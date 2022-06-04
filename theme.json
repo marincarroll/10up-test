@@ -3,16 +3,22 @@
 	"version": 2,
 	"settings": {      
 		"layout": {
-			"contentSize": "980px",
-			"wideSize": "1180px"
+			"contentSize": "1135px"
 		},
 		"color": {
+			"defaultPalette": false,
+			"custom": false,
 			"palette": [
                 {
                     "name": "Black",
                     "slug": "black",
                     "color": "#010203"
-                }
+                },
+				{
+					"name": "White",
+					"slug": "white",
+					"color": "white"
+				}
 			],
 			"gradients": [
 				{
@@ -22,8 +28,41 @@
 				}
 			]
 		},
+		"typography": {
+			"fontFamilies": [
+				{
+					"fontFamily": "\"Cousine\", monospace",
+					"name": "Cousine",
+					"slug": "accent"
+				},
+				{
+					"fontFamily": "\"Montserrat\", serif",
+					"name": "Montserrat",
+					"slug": "body"
+				}
+			]
+		},
 		"blocks": {
 			"core/heading": {
+				"typography": {
+					"fontSizes": [
+						{
+							"name": "Large",
+							"slug": "large",
+							"size": "clamp(40px, 4.444vw, 64px)"
+						},
+						{
+							"name": "Regular",
+							"slug": "regular",
+							"size": "clamp(23px, 2.569vw, 37px)"
+						},
+						{
+							"name": "Accent",
+							"slug": "accent",
+							"size": "1rem"
+						}
+					]
+				},
 				"color": {
 					"palette": [
 						{
@@ -45,8 +84,14 @@
 		"color": {
 			"text": "#081523"
 		},
+		"typography": {
+			"fontFamily": "var(--wp--preset--font-family--body)"
+		},
 		"blocks": {
 			"core/button": {
+
+			},
+			"core/heading": {
 
 			},
 			"core/navigation": {
