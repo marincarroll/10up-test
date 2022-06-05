@@ -10,12 +10,11 @@ define( 'GRNDHG_ASSETSDIR', get_template_directory() . '/assets/' );
  * Enqueue theme stylesheet
  */
 function groundhog_enqueue_assets() {	
-    $theme_path = '/css/style.css';
 	wp_enqueue_style(
 		'groundhog-style', 
-		GRNDHG_ASSETSURL . $theme_path, 
+		get_stylesheet_uri(), 
 		[ ], 
-		filemtime( GRNDHG_ASSETSDIR . $theme_path )
+		filemtime( get_stylesheet_directory() . '/style.css' )
 	);
 }
 add_action('enqueue_block_assets', 'groundhog_enqueue_assets');
