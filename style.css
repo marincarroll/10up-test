@@ -29,18 +29,23 @@
 }
 
 html {
-    font-size: clamp(14px, 1.388vw, 20px);
+    font-size: clamp(14px, 1.6vw, 20px);
 }
 
 .wp-site-blocks {
-    padding-left: 3.33vw;
-    padding-right: 3.33vw;
     position: relative;
 }
 
+.wp-site-blocks, 
+.wp-block-group.alignfull {
+    padding-left: 4vw;
+    padding-right: 4vw;
+}
+
+/* I hate this, but it's what they do in Twenty Twenty Two so...*/
 .wp-site-blocks .alignfull {
-    margin-left: -3.33vw !important;
-    margin-right: -3.33vw !important;
+    margin-left: -4vw !important;
+    margin-right: -4vw !important;
     width: unset;
 }
 
@@ -48,35 +53,55 @@ html {
  * Typography
  */
 
-
 .has-accent-font-size {
     font-family: var(--wp--preset--font-family--accent);
 }
 
+
 /**
- * core/button
+ * Buttons
  */
 .is-style-underline .wp-block-button__link {
     background: none;
     border-radius: 0;
     border-bottom: 2px solid currentColor;
-    padding: 0.45em 0 0.3em;
+    padding: 0.3em 0;
 }
+
+.is-style-outline>:where(.wp-block-button__link), 
+:where(.wp-block-button__link).is-style-outline {
+    border-width: 1px;
+    padding: 0.65em 1.15em 0.75em;
+}
+
 
 /**
  * Navigation
  */
-header.wp-block-template-part  {
+header.wp-block-template-part {
     position: fixed;
     width: 100%;
 }
 
+
+/**
+ * Footer
+ */
+footer.wp-block-template-part {
+}
+
+
 /**
  * Media & Text
  */  
+.wp-block-media-text {
+    gap: 3.85rem;
+}
+
 .wp-block-media-text .wp-block-media-text__content {
     padding: 0;
 }
+
 
 /**
  * Cover
