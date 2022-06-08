@@ -4,6 +4,30 @@
  Author: Marin Carroll
 */
 
+@font-face{
+    font-family: 'Montserrat';
+    font-weight: 500;
+    src: url('assets/fonts/Montserrat-Medium.woff2') format('woff2');
+}
+
+@font-face{
+    font-family: 'Montserrat';
+    font-weight: 600;
+    src: url('assets/fonts/Montserrat-SemiBold.woff2') format('woff2');
+}
+
+@font-face{
+    font-family: 'Montserrat';
+    font-weight: 700;
+    src: url('assets/fonts/Montserrat-Bold.woff2') format('woff2');
+}
+
+@font-face{
+    font-family: 'Cousine';
+    font-weight: 700;
+    src: url('assets/fonts/Cousine-Bold.woff2') format('woff2');
+}
+
 html {
     font-size: clamp(14px, 1.388vw, 20px);
 }
@@ -11,6 +35,7 @@ html {
 .wp-site-blocks {
     padding-left: 3.33vw;
     padding-right: 3.33vw;
+    position: relative;
 }
 
 .wp-site-blocks .alignfull {
@@ -19,7 +44,44 @@ html {
     width: unset;
 }
 
+/**
+ * Typography
+ */
+
+
 .has-accent-font-size {
     font-family: var(--wp--preset--font-family--accent);
+}
+
+/**
+ * core/button
+ */
+.is-style-underline .wp-block-button__link {
+    background: none;
+    border-radius: 0;
+    border-bottom: 2px solid currentColor;
+    padding: 0.45em 0 0.3em;
+}
+
+/**
+ * Navigation
+ */
+header.wp-block-template-part  {
+    position: fixed;
+    width: 100%;
+}
+
+/**
+ * Media & Text
+ */  
+.wp-block-media-text .wp-block-media-text__content {
+    padding: 0;
+}
+
+/**
+ * Cover
+ */ 
+.wp-block-cover__inner-container {
+    max-width: 20rem;
 }
 /*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInN0eWxlLmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTs7OztDQUlDOztBQUVEO0lBQ0kscUNBQXFDO0FBQ3pDOztBQUVBO0lBQ0ksb0JBQW9CO0lBQ3BCLHFCQUFxQjtBQUN6Qjs7QUFFQTtJQUNJLCtCQUErQjtJQUMvQixnQ0FBZ0M7SUFDaEMsWUFBWTtBQUNoQjs7QUFFQTtJQUNJLG1EQUFtRDtBQUN2RCIsImZpbGUiOiJzdHlsZS5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIvKlxuIFRoZW1lIE5hbWU6IEdyb3VuZGhvZ1xuIFRoZW1lIFVSSTogaHR0cHM6Ly9naXRodWIuY29tL21hcmluY2Fycm9sbC8xMHVwLXRlc3RcbiBBdXRob3I6IE1hcmluIENhcnJvbGxcbiovXG5cbmh0bWwge1xuICAgIGZvbnQtc2l6ZTogY2xhbXAoMTRweCwgMS4zODh2dywgMjBweCk7XG59XG5cbi53cC1zaXRlLWJsb2NrcyB7XG4gICAgcGFkZGluZy1sZWZ0OiAzLjMzdnc7XG4gICAgcGFkZGluZy1yaWdodDogMy4zM3Z3O1xufVxuXG4ud3Atc2l0ZS1ibG9ja3MgLmFsaWduZnVsbCB7XG4gICAgbWFyZ2luLWxlZnQ6IC0zLjMzdncgIWltcG9ydGFudDtcbiAgICBtYXJnaW4tcmlnaHQ6IC0zLjMzdncgIWltcG9ydGFudDtcbiAgICB3aWR0aDogdW5zZXQ7XG59XG5cbi5oYXMtYWNjZW50LWZvbnQtc2l6ZSB7XG4gICAgZm9udC1mYW1pbHk6IHZhcigtLXdwLS1wcmVzZXQtLWZvbnQtZmFtaWx5LS1hY2NlbnQpO1xufVxuICAiXX0= */
