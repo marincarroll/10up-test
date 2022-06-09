@@ -42,7 +42,8 @@ html {
     padding-right: 4vw;
 }
 
-/* I hate this, but it's what they do in Twenty Twenty Two so...*/
+/* I hate this, but it's what they do in Twenty Twenty Two so...
+let's say this fictional client is on retainer for when it breaks */
 .wp-site-blocks .alignfull {
     margin-left: -4vw !important;
     margin-right: -4vw !important;
@@ -80,6 +81,12 @@ html {
 header.wp-block-template-part {
     position: fixed;
     width: 100%;
+    z-index: 999;
+    transition: background-color 0.4s;
+}
+
+header.wp-block-template-part.scrolled {
+    background-color: rgba(0,0,0,0.8);
 }
 
 /**
@@ -99,18 +106,26 @@ main .wp-block-group {
 /**
  * Media & Text
  */  
+
 .wp-block-media-text {
-    gap: 3.85rem;
+    gap: 4rem;
 }
 
 .wp-block-media-text .wp-block-media-text__content {
     padding: 0;
 }
 
+.wp-block-media-text__media img {
+transform-origin: bottom center;
+}
 
-@media (max-width: 601px) {
-    .wp-block-media-text .wp-block-media-text__media {
- 
+@media (min-width: 601px) {
+    .wp-block-media-text__media img {
+        transform-origin: center right;
+    }
+
+    .has-media-on-the-right .wp-block-media-text__media img {
+        transform-origin: center left;
     }
 }
 

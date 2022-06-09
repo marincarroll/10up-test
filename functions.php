@@ -6,6 +6,7 @@
 define( 'GRNDHG_ASSETSURL', get_template_directory_uri() . '/assets/' );
 define( 'GRNDHG_ASSETSDIR', get_template_directory() . '/assets/' );
 
+
 /**
  * Enqueue theme stylesheet
  */
@@ -21,7 +22,7 @@ add_action('enqueue_block_assets', 'groundhog_enqueue_assets');
 
 
 /**
- * Enqueue script to modify core blocks
+ * Enqueue scripts to modify core blocks
  */
 function groundhog_gutenberg_script() {
 	$script_path  = '/js/build/index.js';
@@ -35,6 +36,23 @@ function groundhog_gutenberg_script() {
     );
 }
 add_action( 'enqueue_block_editor_assets', 'groundhog_gutenberg_script' );
+
+
+/**
+ * Enqueue these assets on front-end only.
+ */
+function groundhog_blocks_enqueue_frontend_assets() {
+    $nav_path = '/js/navigation.js';
+    wp_enqueue_script(
+        'groundhog-navigation', 
+        GRNDHG_ASSETSURL . $nav_path,
+        [ ],
+        filemtime( GRNDHG_ASSETSDIR  . $nav_path ), 
+        true
+    );
+}
+add_action( 'wp_enqueue_scripts', 'groundhog_blocks_enqueue_frontend_assets' );
+
 
 /**
  * Allow for SVG uploads in Media Library
