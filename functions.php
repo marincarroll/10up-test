@@ -24,13 +24,14 @@ add_action('enqueue_block_assets', 'groundhog_enqueue_assets');
  * Enqueue script to modify core blocks
  */
 function groundhog_gutenberg_script() {
-	$script_path = '/js/core-mods.js';
+	$script_path  = '/js/build/index.js';
+    $script_asset = require( GRNDHG_ASSETSDIR . 'js/build/index.asset.php' );
+
 	wp_enqueue_script( 
         'groundhog-core-mods', 
         GRNDHG_ASSETSURL . $script_path , 
-        [ 'wp-blocks', 'wp-dom', 'wp-i18n' ], 
-        filemtime( GRNDHG_ASSETSDIR . $script_path ), 
-        true 
+        $script_asset['dependencies'],
+        $script_asset['version']
     );
 }
 add_action( 'enqueue_block_editor_assets', 'groundhog_gutenberg_script' );

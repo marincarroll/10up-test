@@ -1,0 +1,1 @@
+!function(){"use strict";var e=window.wp.blocks,n=window.wp.i18n;(0,e.registerBlockStyle)("core/button",{name:"underline",label:(0,n.__)("Underline"),isDefault:!0})}();

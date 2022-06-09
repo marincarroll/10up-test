@@ -15,18 +15,16 @@
 	},
 	"scripts": {
 		"autoprefix": "postcss style.css -r --use autoprefixer",
-		"lint": "stylelint **/*.css --fix -i .gitignore",
-		"build": "webpack build --node-env=production",
-		"start": "webpack build --node-env=development"
+		"format": "wp-scripts format",
+		"lint:css": "wp-scripts lint:css",
+		"lint:js": "wp-scripts lint:js",
+		"build": "wp-scripts build --output-path=assets/js/build --webpack-src-dir=assets/js/src",
+		"start": "wp-scripts start --output-path=assets/js/build --webpack-src-dir=assets/js/src"
 	},
 	"devDependencies": {
-		"@wordpress/stylelint-config": "^20.0.2",
+		"@wordpress/scripts": "^23.2.0",
 		"autoprefixer": "^10.4.7",
-		"babel-loader": "^8.2.5",
 		"postcss": "^8.4.14",
-		"postcss-cli": "^9.1.0",
-		"stylelint": "^14.8.5",
-		"webpack": "^5.73.0",
-		"webpack-cli": "^4.9.2"
+		"postcss-cli": "^9.1.0"
 	}
 }

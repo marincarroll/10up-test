@@ -1,1 +1,0 @@
-wp.domReady((()=>{wp.blocks.registerBlockStyle("core/button",{name:"underline",label:wp.i18n.__("Underline"),isDefault:!0}),wp.blocks.unregisterBlockStyle("core/button",["fill"])}));

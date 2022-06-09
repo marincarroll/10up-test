@@ -74,7 +74,6 @@ html {
     padding: 0.65em 1.15em 0.75em;
 }
 
-
 /**
  * Navigation
  */
@@ -83,13 +82,19 @@ header.wp-block-template-part {
     width: 100%;
 }
 
-
 /**
  * Footer
  */
 footer.wp-block-template-part {
 }
 
+/**
+ * Group
+ */  
+
+main .wp-block-group {
+    overflow: hidden;
+}
 
 /**
  * Media & Text
@@ -100,6 +105,13 @@ footer.wp-block-template-part {
 
 .wp-block-media-text .wp-block-media-text__content {
     padding: 0;
+}
+
+
+@media (max-width: 601px) {
+    .wp-block-media-text .wp-block-media-text__media {
+ 
+    }
 }
 
 
