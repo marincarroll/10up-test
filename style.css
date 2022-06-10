@@ -206,6 +206,10 @@ button.wp-block-navigation__responsive-container-close {
 	padding: 0;
 }
 
+.wp-block-media-text__media {
+	min-height: 100%;
+}
+
 .wp-block-media-text__media img {
 	transform-origin: bottom center;
 }
