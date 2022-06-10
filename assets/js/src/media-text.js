@@ -1,21 +1,33 @@
 import { createHigherOrderComponent } from '@wordpress/compose';
 import { InspectorControls } from '@wordpress/block-editor';
+import { registerBlockStyle } from '@wordpress/blocks';
 import { PanelBody, RangeControl } from '@wordpress/components';
 import { addFilter } from '@wordpress/hooks';
 import { __ } from '@wordpress/i18n';
 
 const coreName = 'core/media-text';
+
+/** 
+ * Large hero style  
+ */
+registerBlockStyle( coreName, {
+    name: 'hero',
+    label: __('Fancy Hero')
+} );
+
 /** 
  * Register attribute for negative offset
  */
 const offsetAttribute = (settings) => {
-	if( typeof settings.attributes !== 'undefined' && settings.name == coreName ){
-		settings.attributes = Object.assign( settings.attributes, {
-			offset: {
-				type: 'number',
-				default: '0'
-			}
-		} )
+	if( settings.name == coreName ){
+		if( typeof settings.attributes !== 'undefined' ) {
+			settings.attributes = Object.assign( settings.attributes, {
+				offset: {
+					type: 'number',
+					default: '0'
+				}
+			} )
+		}
 	}
 
 	return settings;
@@ -34,9 +46,10 @@ addFilter(
 const offsetControls = createHigherOrderComponent( ( BlockEdit ) => {
 	return props => {
 		if ( props.name == coreName ) {
+
 			const { setAttributes } = props;
 			const { offset } = props.attributes;
-
+	
 			return (
 				<>
 					<BlockEdit {...props} />
@@ -68,12 +81,16 @@ addFilter(
    offsetControls
 );
 
+
+/** 
+ * Inline style to adjust by the amount of negative offset
+ */
 const offsetInlineStyleFrontend = (element, blockType, attributes) => {
 	if (!element) { return; }
 	if (blockType.name == coreName) {
 		const { offset } = attributes;
-        
-        if (offset > 0) {
+
+		if( offset > 0 ) {
             element.props.children.forEach( child => {
                 if( child.props.className == 'wp-block-media-text__media' ) {
 					const grandchild = child.props.children;
@@ -81,6 +98,7 @@ const offsetInlineStyleFrontend = (element, blockType, attributes) => {
 					
 					style = style !== undefined ? style : {};
                     style.transform = `scale(${100 + offset}%)`;
+                    style.paddingTop = `${offset}%`;
 
                     grandchild.props.style = style;
                 }

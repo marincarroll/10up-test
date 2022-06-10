@@ -1,2 +1,2 @@
 import './button';
-import './image';
+import './media-text';

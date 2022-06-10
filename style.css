@@ -29,7 +29,12 @@
 }
 
 html {
-    font-size: clamp(14px, 1.6vw, 20px);
+    font-size: clamp(14px, 1.5vw, 20px);
+    -webkit-font-smoothing: antialiased;
+}
+
+* {
+    box-sizing: border-box;
 }
 
 .wp-site-blocks {
@@ -37,16 +42,17 @@ html {
 }
 
 .wp-site-blocks, 
-.wp-block-group.alignfull {
-    padding-left: 4vw;
-    padding-right: 4vw;
+.wp-block-group.alignfull,
+.wp-block-media-text.alignfull {
+    padding-left: 6vw;
+    padding-right: 6vw;
 }
 
 /* I hate this, but it's what they do in Twenty Twenty Two so...
 let's say this fictional client is on retainer for when it breaks */
 .wp-site-blocks .alignfull {
-    margin-left: -4vw !important;
-    margin-right: -4vw !important;
+    margin-left: -6vw !important;
+    margin-right: -6vw !important;
     width: unset;
 }
 
@@ -62,6 +68,10 @@ let's say this fictional client is on retainer for when it breaks */
 /**
  * Buttons
  */
+div.wp-block-buttons {
+    gap: 2rem;
+}
+
 .is-style-underline .wp-block-button__link {
     background: none;
     border-radius: 0;
@@ -78,15 +88,32 @@ let's say this fictional client is on retainer for when it breaks */
 /**
  * Navigation
  */
-header.wp-block-template-part {
-    position: fixed;
-    width: 100%;
+header {
     z-index: 999;
+    height: 0;
+    position: sticky;
+    top: -2rem;
+    transition: padding-top 0.4s;
+}
+
+.admin-bar header {
+    top: calc(-2rem + var(--wp-admin--admin-bar--height));
+}
+
+header.scrolled {
+    padding-top: 0;
+}
+
+header .wp-block-group {
     transition: background-color 0.4s;
 }
 
-header.wp-block-template-part.scrolled {
-    background-color: rgba(0,0,0,0.8);
+header.scrolled .wp-block-group {
+    background-color: rgba(0,0,0,0.7);
+}
+
+.wp-block-navigation__responsive-container-open {
+    
 }
 
 /**
@@ -106,9 +133,15 @@ main .wp-block-group {
 /**
  * Media & Text
  */  
-
 .wp-block-media-text {
-    gap: 4rem;
+    padding: 4.25rem 0;
+    gap: 3.5rem;
+}
+
+.wp-block-media-text .wp-block-media-text__content,
+.wp-block-media-text .wp-block-media-text__media {
+    max-width: 28rem;
+    margin: auto;
 }
 
 .wp-block-media-text .wp-block-media-text__content {
@@ -116,19 +149,50 @@ main .wp-block-group {
 }
 
 .wp-block-media-text__media img {
-transform-origin: bottom center;
+    transform-origin: bottom center;
 }
 
 @media (min-width: 601px) {
+    .wp-block-media-text {
+        gap: 5rem;
+    }
+
+    .wp-block-media-text .wp-block-media-text__content,
+    .wp-block-media-text .wp-block-media-text__media {
+        max-width: none;
+    }
+
     .wp-block-media-text__media img {
-        transform-origin: center right;
+        transform-origin: bottom right;
     }
 
     .has-media-on-the-right .wp-block-media-text__media img {
-        transform-origin: center left;
+        transform-origin: bottom left;
     }
 }
 
+/* Fancy Hero style */
+
+@media screen and (min-width: 601px) {
+    .wp-block-media-text.is-style-hero {
+        max-height: 100vh;
+        gap: 0;
+        padding: 0;
+    }
+    
+    .is-style-hero .wp-block-media-text__content {
+        padding-top: 10.5rem;
+        padding-bottom: 7.5rem;
+    }
+
+    .is-style-hero .wp-block-media-text__media {
+        margin-bottom: -5%;
+    }
+    
+    .admin-bar .wp-block-media-text.is-style-hero {
+        max-height: calc( 100vh - var(--wp-admin--admin-bar--height) );
+    }
+}
 
 /**
  * Cover
