@@ -7,31 +7,31 @@ import { __ } from '@wordpress/i18n';
 
 const coreName = 'core/media-text';
 
-/** 
- * Large hero style  
+/**
+ * Large hero style
  */
-registerBlockStyle( coreName, {
-    name: 'hero',
-    label: __('Fancy Hero')
-} );
+registerBlockStyle(coreName, {
+	name: 'hero',
+	label: __('Fancy Hero'),
+});
 
-/** 
+/**
  * Register attribute for negative offset
  */
 const offsetAttribute = (settings) => {
-	if( settings.name == coreName ){
-		if( typeof settings.attributes !== 'undefined' ) {
-			settings.attributes = Object.assign( settings.attributes, {
+	if (settings.name === coreName) {
+		if (typeof settings.attributes !== 'undefined') {
+			settings.attributes = Object.assign(settings.attributes, {
 				offset: {
 					type: 'number',
-					default: '0'
-				}
-			} )
+					default: '0',
+				},
+			});
 		}
 	}
 
 	return settings;
-}
+};
 
 addFilter(
 	'blocks.registerBlockType',
@@ -39,75 +39,70 @@ addFilter(
 	offsetAttribute
 );
 
-
-/** 
+/**
  * Editor controls for negative offset
  */
-const offsetControls = createHigherOrderComponent( ( BlockEdit ) => {
-	return props => {
-		if ( props.name == coreName ) {
-
+const offsetControls = createHigherOrderComponent((BlockEdit) => {
+	return (props) => {
+		if (props.name === coreName) {
 			const { setAttributes } = props;
 			const { offset } = props.attributes;
-	
+
 			return (
 				<>
 					<BlockEdit {...props} />
 					<InspectorControls>
-						<PanelBody title={ __('Negative Offset') }>
+						<PanelBody title={__('Negative Offset')}>
 							<RangeControl
 								allowReset
-								withInputField={ false }
+								withInputField={false}
 								resetFallbackValue="0"
-								value={ offset }
-								onChange={ num => setAttributes({ offset: num }) }
-								max={ 25 }
+								value={offset}
+								onChange={(num) =>
+									setAttributes({ offset: num })
+								}
+								max={25}
 							/>
 						</PanelBody>
 					</InspectorControls>
 				</>
-			)
+			);
 		}
 
-		return (
-			<BlockEdit { ...props } />
-		)
-	}
+		return <BlockEdit {...props} />;
+	};
 }, 'offsetControls');
 
-addFilter( 
-   'editor.BlockEdit', 
-   'groundhog/offset-controls', 
-   offsetControls
-);
+addFilter('editor.BlockEdit', 'groundhog/offset-controls', offsetControls);
 
-
-/** 
+/**
  * Inline style to adjust by the amount of negative offset
  */
 const offsetInlineStyleFrontend = (element, blockType, attributes) => {
-	if (!element) { return; }
-	if (blockType.name == coreName) {
+	if (!element) {
+		return;
+	}
+	if (blockType.name === coreName) {
 		const { offset } = attributes;
 
-		if( offset > 0 ) {
-            element.props.children.forEach( child => {
-                if( child.props.className == 'wp-block-media-text__media' ) {
+		if (offset > 0) {
+			element.props.children.forEach((child) => {
+				if (child.props.className === 'wp-block-media-text__media') {
 					const grandchild = child.props.children;
-                    let { style } = grandchild.props;
-					
-					style = style !== undefined ? style : {};
-                    style.transform = `scale(${100 + offset}%)`;
-                    style.paddingTop = `${offset}%`;
+					let { style } = grandchild.props;
 
-                    grandchild.props.style = style;
-                }
-            });
-        }
+					style = style !== undefined ? style : {};
+					style.transform = `scale(${100 + offset}%)`;
+					style.paddingTop = `${offset}%`;
+
+					grandchild.props.style = style;
+				}
+			});
+		}
 	}
 
 	return element;
-}
+};
 
 addFilter(
 	'blocks.getSaveElement',

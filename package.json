@@ -4,20 +4,20 @@
 		"name": "Marin Carroll",
 		"email": "marin@marincarroll.com"
 	},
-	"engines": {
-		"node": ">= 14.15.0"
-	},
 	"private": true,
 	"license": "UNLICENSED",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/marincarroll/10up-test"
 	},
+	"engines": {
+		"node": ">= 14.15.0"
+	},
 	"scripts": {
 		"autoprefix": "postcss style.css -r --use autoprefixer",
 		"format": "wp-scripts format",
-		"lint:css": "wp-scripts lint:css",
-		"lint:js": "wp-scripts lint:js",
+		"lint:css": "wp-scripts lint-style",
+		"lint:js": "wp-scripts lint-js",
 		"build": "wp-scripts build --output-path=assets/js/build --webpack-src-dir=assets/js/src",
 		"start": "wp-scripts start --output-path=assets/js/build --webpack-src-dir=assets/js/src"
 	},

@@ -9,11 +9,11 @@
 			"defaultPalette": false,
 			"custom": false,
 			"palette": [
-                {
-                    "name": "Black",
-                    "slug": "black",
-                    "color": "#010203"
-                },
+				{
+					"name": "Black",
+					"slug": "black",
+					"color": "#010203"
+				},
 				{
 					"name": "White",
 					"slug": "white",
@@ -76,7 +76,7 @@
 							"color": "#0262F0"
 						}
 					]
-				}			
+				}
 			}
 		}
 	},
