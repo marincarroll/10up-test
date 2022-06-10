@@ -92,12 +92,14 @@ header {
     z-index: 999;
     height: 0;
     position: sticky;
-    top: -2rem;
+    top: -1.5rem;
     transition: padding-top 0.4s;
 }
 
-.admin-bar header {
-    top: calc(-2rem + var(--wp-admin--admin-bar--height));
+@media (min-width: 601px) {
+    .admin-bar header {
+        top: calc(-1.5rem + var(--wp-admin--admin-bar--height));
+    }
 }
 
 header.scrolled {
@@ -109,23 +111,78 @@ header .wp-block-group {
 }
 
 header.scrolled .wp-block-group {
-    background-color: rgba(0,0,0,0.7);
+    background-color: black;
 }
 
-.wp-block-navigation__responsive-container-open {
+.wp-block-site-logo {
+    max-width: 30vw;
+}
+
+.wp-block-site-logo img {
+    max-width: 100%;
+}
+
+.wp-block-navigation button {
+    width: 2.25rem;
+    height: 2.25rem;
+    background: url(assets/img/menu.svg) no-repeat center/contain;
+}
+
+.wp-block-navigation button svg {
+    display: none;
+}
+
+.wp-block-navigation__responsive-close {
+    height: 100%;
+    position: relative;
     
 }
 
-/**
- * Footer
- */
-footer.wp-block-template-part {
+@media (min-width: 601px) {
+    .admin-bar .wp-block-navigation__responsive-close {
+        margin-top: var(--wp-admin--admin-bar--height);
+    }
+}
+
+/* Keep this full-width fixed element since it triggers the micromodal close*/
+.wp-block-navigation:not(.has-background) .wp-block-navigation__responsive-container.is-menu-open {    background: transparent;
+    background: none;
+}
+
+.wp-block-navigation .wp-block-navigation__responsive-container {
+    padding: 0;
+}
+
+.wp-block-navigation__responsive-dialog {
+    position: absolute;
+    right: 6vw;
+    top: 1.5em;
+    padding: 2.5rem 2.25rem 2.5rem;
+    margin-right: -1.5rem;
+    min-width: 13rem;
+    color: white;
+    background: black;
+}
+
+.scrolled .wp-block-navigation__responsive-dialog {
+    top: 0;
+}
+
+button.wp-block-navigation__responsive-container-close {
+    background-image: url(assets/img/close.svg);
+    top: 1.5rem;
+    right: 1.5rem;
+}
+
+.wp-block-navigation-item {
+    font-size: 1.4rem;
+    margin: 0.6em 0;
+    font-weight: 600;
 }
 
 /**
  * Group
- */  
-
+ */ 
 main .wp-block-group {
     overflow: hidden;
 }
